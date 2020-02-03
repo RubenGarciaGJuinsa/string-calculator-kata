@@ -13,7 +13,8 @@ class StringCalculator
         static::$timesCalled++;
 
         $explodedNumbers = self::getNumbersFromString($numbers);
-        $validNumbers = self::checkIfNumbersAreNegative($explodedNumbers);
+        self::checkIfNumbersAreNegative($explodedNumbers);
+        $validNumbers = self::filterBiggerNumbers($explodedNumbers);
 
         $result = array_sum($validNumbers);
 
@@ -45,17 +46,25 @@ class StringCalculator
      */
     protected static function checkIfNumbersAreNegative($explodedNumbers)
     {
-        $validNumbers = [];
         $negativeNumbers = [];
         foreach ($explodedNumbers as $number) {
             if ($number < 0) {
                 $negativeNumbers[] = $number;
-            } else if ($number <= 1000) {
-                $validNumbers[] = $number;
             }
         }
         if (!empty($negativeNumbers)) {
             throw new \Exception("negatives not allowed: ".implode(', ', $negativeNumbers));
+        }
+    }
+
+    protected static function filterBiggerNumbers(array $explodedNumbers)
+    {
+        $validNumbers = [];
+
+        foreach ($explodedNumbers as $number) {
+            if ($number <= 1000) {
+                $validNumbers[] = $number;
+            }
         }
 
         return $validNumbers;
