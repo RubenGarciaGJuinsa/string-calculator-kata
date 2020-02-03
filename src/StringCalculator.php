@@ -58,9 +58,7 @@ class StringCalculator
 
     public static function getCalledCount()
     {
-        $timesCalled = static::$timesCalled;
-
-        return $timesCalled;
+        return static::$timesCalled;
     }
 
     public static function unsetTimesCalled()
