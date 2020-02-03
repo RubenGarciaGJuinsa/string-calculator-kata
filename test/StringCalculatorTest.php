@@ -89,5 +89,14 @@ class StringCalculatorTest extends TestCase
         $this->assertEquals('1', StringCalculator::getCalledCount());
     }
 
+    /** @test */
+    public function
+    get_two_time_called_add_method()
+    {
+        StringCalculator::add("1,4");
+        StringCalculator::add("1,4");
+        $this->assertEquals('2', StringCalculator::getCalledCount());
+    }
+
 
 }
