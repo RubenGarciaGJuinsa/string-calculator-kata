@@ -8,7 +8,7 @@ class StringCalculator
 {
     public static function add(string $numbers): int
     {
-        $result = 0;
+        $result = (int)$numbers;
 
         return $result;
     }
