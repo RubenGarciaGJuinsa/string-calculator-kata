@@ -10,9 +10,7 @@ class StringCalculator
     {
         $explodedNumbers = self::getNumbersFromString($numbers);
         foreach ($explodedNumbers as $number) {
-            if ($number < 0) {
-                throw new \Exception("negatives not allowed: ".$number);
-            }
+            self::checkIfNumberIsNegative($number);
         }
         $result = array_sum($explodedNumbers);
 
@@ -36,5 +34,16 @@ class StringCalculator
         }
 
         return preg_split('/('.$splitChars.')/', $numbers);
+    }
+
+    /**
+     * @param $number
+     * @throws \Exception
+     */
+    protected static function checkIfNumberIsNegative($number)
+    {
+        if ($number < 0) {
+            throw new \Exception("negatives not allowed: ".$number);
+        }
     }
 }
