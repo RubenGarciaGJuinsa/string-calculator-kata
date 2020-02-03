@@ -6,6 +6,12 @@ use PHPUnit\Framework\TestCase;
 
 class StringCalculatorTest extends TestCase
 {
+    public function
+    tearDown()
+    {
+        StringCalculator::unsetTimesCalled();
+    }
+
     /** @test */
     public function
     pass_empty_string_get_0()

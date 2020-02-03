@@ -6,8 +6,12 @@ namespace Kata;
 
 class StringCalculator
 {
+    protected static $timesCalled = 0;
+
     public static function add(string $numbers): int
     {
+        static::$timesCalled++;
+
         $explodedNumbers = self::getNumbersFromString($numbers);
         self::checkIfNumbersAreNegative($explodedNumbers);
 
@@ -54,8 +58,13 @@ class StringCalculator
 
     public static function getCalledCount()
     {
-        $timesCalled = 0;
+        $timesCalled = static::$timesCalled;
 
         return $timesCalled;
+    }
+
+    public static function unsetTimesCalled()
+    {
+        static::$timesCalled = 0;
     }
 }
