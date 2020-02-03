@@ -9,9 +9,8 @@ class StringCalculator
     public static function add(string $numbers): int
     {
         $explodedNumbers = self::getNumbersFromString($numbers);
-        foreach ($explodedNumbers as $number) {
-            self::checkIfNumberIsNegative($number);
-        }
+        self::checkIfNumbersAreNegative($explodedNumbers);
+
         $result = array_sum($explodedNumbers);
 
         return $result;
@@ -40,10 +39,16 @@ class StringCalculator
      * @param $number
      * @throws \Exception
      */
-    protected static function checkIfNumberIsNegative($number)
+    protected static function checkIfNumbersAreNegative($explodedNumbers)
     {
-        if ($number < 0) {
-            throw new \Exception("negatives not allowed: ".$number);
+        $negativeNumbers = [];
+        foreach ($explodedNumbers as $number) {
+            if ($number < 0) {
+                $negativeNumbers[] = $number;
+            }
+        }
+        if (!empty($negativeNumbers)) {
+            throw new \Exception("negatives not allowed: ".implode(', ', $negativeNumbers));
         }
     }
 }
