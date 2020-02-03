@@ -9,6 +9,11 @@ class StringCalculator
     public static function add(string $numbers): int
     {
         $explodedNumbers = self::getNumbersFromString($numbers);
+        foreach ($explodedNumbers as $number) {
+            if ($number < 0) {
+                throw new \Exception("negatives not allowed: ".$number);
+            }
+        }
         $result = array_sum($explodedNumbers);
 
         return $result;
