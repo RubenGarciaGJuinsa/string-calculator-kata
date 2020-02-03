@@ -8,7 +8,7 @@ class StringCalculator
 {
     public static function add(string $numbers): int
     {
-        $explodedNumbers = explode(',', $numbers);
+        $explodedNumbers = preg_split('/(,|\n)/', $numbers);
         $result = array_sum($explodedNumbers);
 
         return $result;
