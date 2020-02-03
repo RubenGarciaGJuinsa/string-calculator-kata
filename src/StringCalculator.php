@@ -8,7 +8,9 @@ class StringCalculator
 {
     public static function add(string $numbers): int
     {
-        $result = (int)$numbers;
+        $result = 0;
+        $explodedNumbers = explode(',', $numbers);
+        $result = array_sum($explodedNumbers);
 
         return $result;
     }
