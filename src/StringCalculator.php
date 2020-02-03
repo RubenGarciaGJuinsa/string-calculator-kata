@@ -8,6 +8,18 @@ class StringCalculator
 {
     public static function add(string $numbers): int
     {
+        $explodedNumbers = self::getNumbersFromString($numbers);
+        $result = array_sum($explodedNumbers);
+
+        return $result;
+    }
+
+    /**
+     * @param string $numbers
+     * @return array
+     */
+    protected static function getNumbersFromString(string $numbers): array
+    {
         $splitChars = ',|\n';
 
         preg_match('/^(\\/\\/(.)+\\n)?((.|\\n)+)/', $numbers, $matches);
@@ -18,9 +30,6 @@ class StringCalculator
             $numbers = $matches[3];
         }
 
-        $explodedNumbers = preg_split('/('.$splitChars.')/', $numbers);
-        $result = array_sum($explodedNumbers);
-
-        return $result;
+        return preg_split('/('.$splitChars.')/', $numbers);
     }
 }
