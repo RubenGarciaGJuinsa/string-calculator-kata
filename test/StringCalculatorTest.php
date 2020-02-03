@@ -20,4 +20,12 @@ class StringCalculatorTest extends TestCase
         $this->assertEquals(1, StringCalculator::add('1'));
         $this->assertEquals(2, StringCalculator::add('2'));
     }
+
+    /** @test */
+    public function
+    pass_two_numbers_and_get_the_sum()
+    {
+        $this->assertEquals(3, StringCalculator::add('1,2'));
+        $this->assertEquals(12, StringCalculator::add('4,8'));
+    }
 }
