@@ -67,4 +67,13 @@ class StringCalculatorTest extends TestCase
         StringCalculator::add("1,4,-1,-2");
         $this->fail('Not exception thrown');
     }
+
+    /** @test */
+    public function
+    get_zero_times_called_add_method()
+    {
+        $this->assertEquals('0', StringCalculator::getCalledCount());
+    }
+
+
 }

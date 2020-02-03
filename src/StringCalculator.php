@@ -51,4 +51,9 @@ class StringCalculator
             throw new \Exception("negatives not allowed: ".implode(', ', $negativeNumbers));
         }
     }
+
+    public static function getCalledCount()
+    {
+
+    }
 }
