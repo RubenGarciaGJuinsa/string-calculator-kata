@@ -58,4 +58,13 @@ class StringCalculatorTest extends TestCase
         StringCalculator::add("1,4,-1");
         $this->fail('Not exception thrown');
     }
+
+    /** @test */
+    public function
+    pass_two_negative_numbers_expect_exception()
+    {
+        $this->expectExceptionMessage('negatives not allowed: -1, -2');
+        StringCalculator::add("1,4,-1,-2");
+        $this->fail('Not exception thrown');
+    }
 }
