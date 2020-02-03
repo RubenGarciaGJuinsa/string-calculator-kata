@@ -27,22 +27,39 @@ class StringCalculator
      */
     protected static function getNumbersFromString(string $numbers): array
     {
-        $splitChars = ',|\n';
+        $specifiedDelimiter = '';
 
-        preg_match('/^(?:\\/\\/(?:(?:\\[(.*)\\]|(.){1}))+\\n)?((.|\\n)+)/', $numbers, $matches);
-
-        if ( ! empty($matches[3])) {
-            $numbers = $matches[3];
-        }
+        preg_match('/^(?:\\/\\/(.*)\\n)?((.|\\n)+)/', $numbers, $matches);
 
         if ( ! empty($matches[1])) {
-            return explode($matches[1], $numbers);
-        }
-        if ( ! empty($matches[2])) {
-            $splitChars .= '|'.$matches[2];
+            $specifiedDelimiter = $matches[1];
         }
 
-        return preg_split('/('.$splitChars.')/', $numbers);
+        if ( ! empty($matches[2])) {
+            $numbers = $matches[2];
+        }
+
+        if (empty($specifiedDelimiter)) {
+            return preg_split('/(,|\n)/', $numbers);
+        }
+
+        return static::splitBySpecifiedDelimiter($numbers, $specifiedDelimiter);
+    }
+
+    protected static function splitBySpecifiedDelimiter($numbers, $specifiedDelimiter)
+    {
+        preg_match('/^(?:\\[(.*)\\])|(.){1}$/', $specifiedDelimiter, $matches);
+
+        $delimiter = '';
+        if (!empty($matches[1])) {
+             $delimiter = $matches[1];
+        }
+
+        if (!empty($matches[2])) {
+            $delimiter = $matches[2];
+        }
+
+        return explode($delimiter, $numbers);
     }
 
     /**
