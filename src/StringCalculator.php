@@ -13,9 +13,9 @@ class StringCalculator
         static::$timesCalled++;
 
         $explodedNumbers = self::getNumbersFromString($numbers);
-        self::checkIfNumbersAreNegative($explodedNumbers);
+        $validNumbers = self::checkIfNumbersAreNegative($explodedNumbers);
 
-        $result = array_sum($explodedNumbers);
+        $result = array_sum($validNumbers);
 
         return $result;
     }
@@ -45,15 +45,20 @@ class StringCalculator
      */
     protected static function checkIfNumbersAreNegative($explodedNumbers)
     {
+        $validNumbers = [];
         $negativeNumbers = [];
         foreach ($explodedNumbers as $number) {
             if ($number < 0) {
                 $negativeNumbers[] = $number;
+            } else if ($number <= 1000) {
+                $validNumbers[] = $number;
             }
         }
         if (!empty($negativeNumbers)) {
             throw new \Exception("negatives not allowed: ".implode(', ', $negativeNumbers));
         }
+
+        return $validNumbers;
     }
 
     public static function getCalledCount()
