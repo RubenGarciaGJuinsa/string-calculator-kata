@@ -12,4 +12,12 @@ class StringCalculatorTest extends TestCase
     {
         $this->assertEquals(0, StringCalculator::add(''));
     }
+
+    /** @test */
+    public function
+    pass_one_number_and_get_that_number()
+    {
+        $this->assertEquals(1, StringCalculator::add('1'));
+        $this->assertEquals(2, StringCalculator::add('2'));
+    }
 }
