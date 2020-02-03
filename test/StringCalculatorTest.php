@@ -98,5 +98,10 @@ class StringCalculatorTest extends TestCase
         $this->assertEquals('2', StringCalculator::getCalledCount());
     }
 
-
+    /** @test */
+    public function
+    pass_more_than_one_thousand_number()
+    {
+        $this->assertEquals(2, StringCalculator::add("2,1001"));
+    }
 }
