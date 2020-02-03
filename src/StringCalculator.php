@@ -54,6 +54,6 @@ class StringCalculator
 
     public static function getCalledCount()
     {
-
+        return 0;
     }
 }
