@@ -54,6 +54,8 @@ class StringCalculator
 
     public static function getCalledCount()
     {
-        return 0;
+        $timesCalled = 0;
+
+        return $timesCalled;
     }
 }
