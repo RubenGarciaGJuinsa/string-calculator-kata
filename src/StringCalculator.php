@@ -29,12 +29,17 @@ class StringCalculator
     {
         $splitChars = ',|\n';
 
-        preg_match('/^(\\/\\/(.)+\\n)?((.|\\n)+)/', $numbers, $matches);
-        if ( ! empty($matches[2])) {
-            $splitChars .= '|'.$matches[2];
-        }
+        preg_match('/^(?:\\/\\/(?:(?:\\[(.*)\\]|(.){1}))+\\n)?((.|\\n)+)/', $numbers, $matches);
+
         if ( ! empty($matches[3])) {
             $numbers = $matches[3];
+        }
+
+        if ( ! empty($matches[1])) {
+            return explode($matches[1], $numbers);
+        }
+        if ( ! empty($matches[2])) {
+            $splitChars .= '|'.$matches[2];
         }
 
         return preg_split('/('.$splitChars.')/', $numbers);
