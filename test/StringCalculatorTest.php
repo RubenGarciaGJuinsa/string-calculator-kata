@@ -49,4 +49,13 @@ class StringCalculatorTest extends TestCase
     {
         $this->assertEquals(3, StringCalculator::add("//;\n1;2"));
     }
+
+    /** @test */
+    public function
+    pass_negative_number_expect_exception()
+    {
+        $this->expectExceptionMessage('negatives not allowed: -1');
+        StringCalculator::add("1,4,-1");
+        $this->fail('Not exception thrown');
+    }
 }
