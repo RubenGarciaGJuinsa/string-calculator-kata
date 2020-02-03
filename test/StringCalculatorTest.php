@@ -42,4 +42,11 @@ class StringCalculatorTest extends TestCase
     {
         $this->assertEquals(6, StringCalculator::add("1\n2,3"));
     }
+
+    /** @test */
+    public function
+    pass_separator_in_number_string()
+    {
+        $this->assertEquals(3, StringCalculator::add("//;\n1;2"));
+    }
 }
