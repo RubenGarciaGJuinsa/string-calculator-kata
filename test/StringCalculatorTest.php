@@ -28,4 +28,11 @@ class StringCalculatorTest extends TestCase
         $this->assertEquals(3, StringCalculator::add('1,2'));
         $this->assertEquals(12, StringCalculator::add('4,8'));
     }
+
+    /** @test */
+    public function
+    pass_ten_numbers_and_get_the_sum()
+    {
+        $this->assertEquals(55, StringCalculator::add('1,2,3,4,5,6,7,8,9,10'));
+    }
 }
